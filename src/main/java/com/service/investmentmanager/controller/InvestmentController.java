@@ -17,7 +17,7 @@ public class InvestmentController {
 	@GetMapping("/customers/1/accounts")
 	public String getInvestmentAndAccountDetails() {
 
-		LOGGER.info("*******Taking to the Investment And Account Details Landing Page.********");
+		LOGGER.info("*******Taking to the Investment And Account Details Landing Page.******** ");
 
 		LOGGER.info("Logged In User is ** " + LoginValidatorUtil.returnLoggedInUser());
 

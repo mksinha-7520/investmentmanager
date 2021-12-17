@@ -4,8 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name = "CUSTOMER")
+import lombok.EqualsAndHashCode;
+
+@Entity
+@Table(name = "CUSTOMER")
+@EqualsAndHashCode
 public class Customer {
 
 	@Id
@@ -13,10 +18,10 @@ public class Customer {
 	@Column(name = "customer_id")
 	private Integer customerId;
 
-	@Column(name = "customer_name")
+	@Column(name = "customer_name", nullable = false, length = 45)
 	private String customerName;
 
-	@Column(name = "password")
+	@Column(name = "password", nullable = false, length = 45)
 	private String password;
 
 	public Integer getCustomerId() {

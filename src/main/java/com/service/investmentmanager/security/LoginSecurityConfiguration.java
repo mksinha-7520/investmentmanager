@@ -25,7 +25,7 @@ public class LoginSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.formLogin().defaultSuccessUrl("/investment", true);
+		http.formLogin().defaultSuccessUrl("/api/customers/1/accounts");
 
 	}
 
