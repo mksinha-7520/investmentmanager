@@ -1,36 +1,35 @@
 package com.service.investmentmanager.controller;
 
-import org.junit.Before;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { InvestmentController.class })
-@WebAppConfiguration
+@RunWith(SpringRunner.class)
+@WebMvcTest(value = InvestmentController.class)
 public class InvestmentControllerTest {
 
+	@Autowired
 	private MockMvc mockMvc;
 
-	@Autowired
-	private WebApplicationContext wac;
+	private static final int HTTP_SUCCESS_STATUS = 200;
 
-	@Before
-	public void setUp() {
-		mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+	@Test
+	public void testLandingController() throws Exception {
+
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+				"/api/customers/1/accounts");
+
+		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+		assertEquals(HTTP_SUCCESS_STATUS, result.getResponse().getStatus());
 	}
 
-	/*
-	 * @Test
-	 * public void whenCalledThenReturned() {
-	 * mockMvc.perform(
-	 * post("/api/customers/1/accounts")
-	 * .andExpect(status().isCreated());
-	 * }
-	 */
 }
