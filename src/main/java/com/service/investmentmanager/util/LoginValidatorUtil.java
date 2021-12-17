@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class LoginValidatorUtil {
 
-	public static String checkUserLoggedIn() {
+	public static String returnLoggedInUser() {
 		String username = StringUtils.EMPTY;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal instanceof UserDetails) {
