@@ -2,10 +2,13 @@ package com.service.investmentmanager.controller;
 
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
+import com.service.investmentmanager.service.RedirectAccountPageService;
 import com.service.investmentmanager.util.LoginValidatorUtil;
 
 @RestController
@@ -13,18 +16,18 @@ public class LandingPageController {
 
 	private final static Logger LOGGER = Logger.getLogger(LandingPageController.class.getName());
 
-	private static String investmentLandingPageResource = "http://localhost:8080/api/customers/1/accounts";
+	@Autowired
+	RedirectAccountPageService redirectAccountPageService;
 
 	@GetMapping("/investment")
-	public String getInvestmentDetails() {
+	public ResponseEntity<String> getInvestmentDetails() {
 
 		LOGGER.info("*******Taking to the Investment Landing Page.********");
 
 		LOGGER.info("Logged in username ** " + LoginValidatorUtil.returnLoggedInUser());
 
-		RestTemplate restTemplate = new RestTemplate();
-		String result = restTemplate.getForObject(investmentLandingPageResource, String.class);
+		String accountDetails = redirectAccountPageService.getInvestmentAcocunts();
 
-		return result;
+		return new ResponseEntity<String>(accountDetails, HttpStatus.OK);
 	}
 }
