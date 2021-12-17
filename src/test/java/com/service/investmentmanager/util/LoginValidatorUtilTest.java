@@ -17,21 +17,21 @@ public class LoginValidatorUtilTest {
 		MockitoAnnotations.initMocks(this);
 	}
 
+	@Test(expected = NullPointerException.class)
+	public void mockApplicationUserAndReturnNull() {
+		LoginValidatorUtil applicationUser = mock(LoginValidatorUtil.class);
+		SecurityContext securityContext = mock(SecurityContext.class);
+		when(securityContext.getAuthentication()).thenReturn(null);
+		SecurityContextHolder.setContext(securityContext);
+		when(SecurityContextHolder.getContext().getAuthentication().getPrincipal()).thenReturn(applicationUser);
+	}
+
 	@Test
 	public void mockApplicationUser() {
 		LoginValidatorUtil applicationUser = mock(LoginValidatorUtil.class);
 		Authentication authentication = mock(Authentication.class);
 		SecurityContext securityContext = mock(SecurityContext.class);
 		when(securityContext.getAuthentication()).thenReturn(authentication);
-		SecurityContextHolder.setContext(securityContext);
-		when(SecurityContextHolder.getContext().getAuthentication().getPrincipal()).thenReturn(applicationUser);
-	}
-
-	@Test(expected = NullPointerException.class)
-	public void mockApplicationUserAndReturnNull() {
-		LoginValidatorUtil applicationUser = mock(LoginValidatorUtil.class);
-		SecurityContext securityContext = mock(SecurityContext.class);
-		when(securityContext.getAuthentication()).thenReturn(null);
 		SecurityContextHolder.setContext(securityContext);
 		when(SecurityContextHolder.getContext().getAuthentication().getPrincipal()).thenReturn(applicationUser);
 	}
