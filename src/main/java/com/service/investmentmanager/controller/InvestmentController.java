@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.service.investmentmanager.util.LoginValidatorUtil;
-
 @RestController
 @RequestMapping("api")
 public class InvestmentController {
@@ -19,10 +17,6 @@ public class InvestmentController {
 
 		LOGGER.info("*******Taking to the Investment And Account Details Landing Page.******** ");
 
-		LOGGER.info("Logged In User is ** " + LoginValidatorUtil.returnLoggedInUser());
-
 		return "Welcome";
-
 	}
-
 }

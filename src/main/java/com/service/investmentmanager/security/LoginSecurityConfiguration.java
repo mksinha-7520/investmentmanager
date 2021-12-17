@@ -19,19 +19,17 @@ public class LoginSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		auth.inMemoryAuthentication().withUser("user@invmgr.com")
 				.password("$2a$12$KVwqNeRb21Dwk8FK36uqvejTKoq1dnYb3DkH2QUPccFYhszOk/5ua")
 				.roles("USER");
-
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.formLogin().defaultSuccessUrl("/api/customers/1/accounts");
-
+		http.formLogin().defaultSuccessUrl("/investment");
 	}
 
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
+
 		return new BCryptPasswordEncoder();
 	}
-
 }

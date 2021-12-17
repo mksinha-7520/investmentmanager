@@ -9,15 +9,13 @@ public class LoginValidatorUtil {
 	public static String returnLoggedInUser() {
 		String username = StringUtils.EMPTY;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
+
 		if (principal instanceof UserDetails) {
 			username = ((UserDetails) principal).getUsername();
 		} else {
 			username = principal.toString();
 		}
-
 		return username;
-
 	}
 
 }

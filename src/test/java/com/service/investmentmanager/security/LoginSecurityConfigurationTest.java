@@ -53,7 +53,6 @@ public class LoginSecurityConfigurationTest {
 				.password("$2a$12$KVwqNeRb21Dwk8FK36uqvejTKoq1dnYb3DkH2QUPccFYhszOk/5ua");
 
 		mvc.perform(login).andExpect(authenticated().withUsername("user"));
-
 	}
 
 	@Configuration
